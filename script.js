@@ -67,10 +67,8 @@ viewer.camera.flyTo({
     }
     });
 
-
     // 77.92, 30.11
-
-
+    
 // Viewer
 // const worldTerrain = Cesium.createWorldTerrain({
 //   requestWaterMask: true,
