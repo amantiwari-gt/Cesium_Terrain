@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>DEM_CesiumJS</title>
+
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.87.1/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.87.1/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div id="controls">
+        <!-- <button id="button"></button> -->
+        <input type="range" id="volume" name="volume" step="2" value="400" list="markers"
+         min="100" max="800">
+        <label for="volume">Water Level: 0 to 800</label>
+        <datalist id="markers">
+            <option value="100"></option>
+            <option value="200"></option>
+            <option value="300"></option>
+            <option value="400"></option>
+            <option value="500"></option>
+            <option value="600"></option>
+            <option value="700"></option>
+            <option value="800"></option>
+          </datalist>
+    </div>
+    <div id="cesiumContainer" class="cesium-viewer"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
