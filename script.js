@@ -3,18 +3,19 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 const worldTerrain = Cesium.createWorldTerrain({
   requestWaterMask: true,
-  requestVertexNormals: true,
+  requestVertexNormals: false,
 });
 
 const viewer = new Cesium.Viewer("cesiumContainer", {
   terrainProvider: worldTerrain,
+  // imageryProvider: Cesium.createWorldImagery(),
 });
 
-const solani = viewer.entities.add({
+const floodVis = viewer.entities.add({
   polygon: {
     hierarchy: Cesium.Cartesian3.fromDegreesArray([
         // 77.79,30.04, 77.79,30.27, 78.0,30.27, 78.0,30.04, 
-        77.79,      30.04,
+        77.79    ,  30.04,
         77.787998,  30.060827,
         77.803101,  30.113857,
         77.811828,  30.124262,
@@ -41,85 +42,63 @@ const solani = viewer.entities.add({
   },
 });
 
-viewer.zoomTo(solani);
-solani.polygon.height = 100;
+viewer.zoomTo(floodVis);
+floodVis.polygon.height = 100;
 const initValue =document.getElementById("volume").value;
-solani.polygon.extrudedHeight = initValue;
+floodVis.polygon.extrudedHeight = initValue;
 
 const buttonTest = document.getElementById("volume");
 buttonTest.addEventListener("input", (e)=>{
-  solani.polygon.extrudedHeight = e.target.value;
+  floodVis.polygon.extrudedHeight = e.target.value;
+});
+
+let demLayer, hand50Layer, HAND1200Layer;
+
+let demBtn = document.getElementById("dem");
+demBtn.addEventListener("click", (e)=>{
+  if (demLayer) {
+    viewer.imageryLayers.remove(demLayer);
+    demLayer = null;
+  } else {
+    demLayer = viewer.imageryLayers.addImageryProvider(
+      new Cesium.IonImageryProvider({ assetId: 2146821 })
+    );
+  }
+});
+
+let hand50Btn = document.getElementById("hand50");
+hand50Btn.addEventListener("click", (e)=>{
+  if (hand50Layer) {
+    viewer.imageryLayers.remove(hand50Layer);
+    hand50Layer = null;
+  } else {
+    hand50Layer = viewer.imageryLayers.addImageryProvider(
+      new Cesium.IonImageryProvider({ assetId: 2146760 })
+    );
+  }
+});
+
+let HAND1200Btn = document.getElementById("hand1200");
+HAND1200Btn.addEventListener("click", (e)=>{
+  if (HAND1200Layer) {
+    viewer.imageryLayers.remove(HAND1200Layer);
+    HAND1200Layer = null;
+  } else {
+    HAND1200Layer = viewer.imageryLayers.addImageryProvider(
+      new Cesium.IonImageryProvider({ assetId: 2147240 })
+    );
+  }
 });
 
 // set lighting to true
-viewer.scene.globe.enableLighting = false;
+viewer.scene.globe.enableLighting = true;
 
-const layer = viewer.imageryLayers.addImageryProvider(
-  new Cesium.IonImageryProvider({ assetId: 2042038 }) 
-  // new Cesium.IonImageryProvider({ assetId: 2054764 })
-);
-    // Centering the view above Solani Basin
+    // Centering the view above floodVis Basin
 viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(77.927621,  30.186689 , 20000), 
+    destination: Cesium.Cartesian3.fromDegrees(77.927621,  30.186689 , 30000), 
     orientation: {
     heading: Cesium.Math.toRadians(0.0),
     pitch: Cesium.Math.toRadians(-90,0)
     }
     });
 
-    // 77.92, 30.11
-    
-// Viewer
-// const worldTerrain = Cesium.createWorldTerrain({
-//   requestWaterMask: true,
-//   requestVertexNormals: true,
-// });
-
-// const viewer = new Cesium.Viewer("cesiumContainer", {
-//   terrainProvider: worldTerrain,
-// });
-
-// const solani = viewer.entities.add({
-//   polygon: {
-//     hierarchy: Cesium.Cartesian3.fromDegreesArray([
-//         77.72,29.88, 77.72,30.30, 78.0,30.30, 78.0,29.88, 
-//       ]),
-        
-//     height: 0,
-//     material: Cesium.Color.BLUE.withAlpha(0.5),
-//     outline: true,
-//     outlineColor: Cesium.Color.BLACK,
-//   },
-// });
-
-// viewer.zoomTo(solani);
-// solani.polygon.height = 0;
-// solani.polygon.extrudedHeight = 1000;
-
-// // set lighting to true
-// viewer.scene.globe.enableLighting = false;
-
-// const layer = viewer.imageryLayers.addImageryProvider(
-//   new Cesium.IonImageryProvider({ assetId: 2012824 })
-// );
-
-  
-
-//     // Centering the view above Solani Basin
-// viewer.camera.flyTo({
-//     destination: Cesium.Cartesian3.fromDegrees( 77.92, 30.11, 100000),
-//     orientation: {
-//     heading: Cesium.Math.toRadians(0.0),
-//     pitch: Cesium.Math.toRadians(-90,0)
-//     }
-//     });
-
-
-
-    
-
-
-    // const viewer = new Cesium.Viewer("cesiumContainer");
-
-
-    
