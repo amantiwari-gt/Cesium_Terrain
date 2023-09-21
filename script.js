@@ -61,22 +61,22 @@ demBtn.addEventListener("click", (e)=>{
     demLayer = null;
   } else {
     demLayer = viewer.imageryLayers.addImageryProvider(
-      new Cesium.IonImageryProvider({ assetId: 2146821 })
+      new Cesium.IonImageryProvider({ assetId: 2284954 })
     );
   }
 });
 
-let hand50Btn = document.getElementById("hand50");
-hand50Btn.addEventListener("click", (e)=>{
-  if (hand50Layer) {
-    viewer.imageryLayers.remove(hand50Layer);
-    hand50Layer = null;
-  } else {
-    hand50Layer = viewer.imageryLayers.addImageryProvider(
-      new Cesium.IonImageryProvider({ assetId: 2146760 })
-    );
-  }
-});
+// let hand50Btn = document.getElementById("hand50");
+// hand50Btn.addEventListener("click", (e)=>{
+//   if (hand50Layer) {
+//     viewer.imageryLayers.remove(hand50Layer);
+//     hand50Layer = null;
+//   } else {
+//     hand50Layer = viewer.imageryLayers.addImageryProvider(
+//       new Cesium.IonImageryProvider({ assetId: 2146760 })
+//     );
+//   }
+// });
 
 let HAND1200Btn = document.getElementById("hand1200");
 HAND1200Btn.addEventListener("click", (e)=>{
@@ -85,7 +85,7 @@ HAND1200Btn.addEventListener("click", (e)=>{
     HAND1200Layer = null;
   } else {
     HAND1200Layer = viewer.imageryLayers.addImageryProvider(
-      new Cesium.IonImageryProvider({ assetId: 2147240 })
+      new Cesium.IonImageryProvider({ assetId: 2147240  })
     );
   }
 });
@@ -96,9 +96,9 @@ viewer.scene.globe.enableLighting = true;
     // Centering the view above floodVis Basin
 viewer.camera.flyTo({
     destination: Cesium.Cartesian3.fromDegrees(77.927621,  30.186689 , 30000), 
-    orientation: {
-    heading: Cesium.Math.toRadians(0.0),
-    pitch: Cesium.Math.toRadians(-90,0)
-    }
+    // orientation: {
+    // heading: Cesium.Math.toRadians(0.0),
+    // pitch: Cesium.Math.toRadians(-90,0)
+    // }
     });
 
